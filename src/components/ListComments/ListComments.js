@@ -7,7 +7,10 @@ const ListComments = () => {
   const [comment, setComments] = comments;
   
   const handleRemoveComment = (e) => {
-    console.log(e.target.parentNode.textContent);
+    const index = e.target.getAttribute('data-index');
+    const newArray = [...comment];
+    newArray.splice(index, 1);
+    setComments(newArray);
   }
   
   return (
@@ -17,6 +20,7 @@ const ListComments = () => {
           <li className="mt-3" key={i}>
             {item}
             <button
+              data-index={i}
               className="btn btn-danger ml-2"
               onClick={handleRemoveComment}
             >
